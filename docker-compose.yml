@@ -1,0 +1,9 @@
+services:
+  api:
+    build: .
+    container_name: fastapi-practice
+    ports:
+      - "8000:8000"
+    environment:
+      APP_ENV: ${APP_ENV:-development}
+    restart: unless-stopped
