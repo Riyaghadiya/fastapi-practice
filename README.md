@@ -1,94 +1,147 @@
 # FastAPI Practice Project
 
 ## Project Description
-This is a beginner-level REST API project built using Python and FastAPI. The application runs locally and inside Docker.
+This is a beginner-level REST API project built using Python and FastAPI. It provides CRUD operations to manage users.
 
 ## Technologies Used
 - Python
 - FastAPI
 - Uvicorn
-- Docker
-- Docker Compose
-- Git
+- Pydantic
+- Postman
+- Git and GitHub
+- Docker and Docker Compose
 
 ## Requirements
 - Python 3.x
 - Visual Studio Code
 - Git
-- Docker Desktop
+- Postman
+- Docker Desktop (optional)
+
+## Project Structure
+
+```text
+fastapi-practice/
+├── main.py
+├── routers/
+│   └── users.py
+├── schemas/
+│   └── user.py
+├── services/
+│   └── user_service.py
+├── requirements.txt
+├── Dockerfile
+├── docker-compose.yml
+└── README.md
+```
 
 ## Project Setup
 
-### 1. Create and activate virtual environment
+### 1. Create a virtual environment
 
 ```powershell
 python -m venv venv
+```
+
+### 2. Activate the virtual environment
+
+```powershell
 .\venv\Scripts\Activate.ps1
 ```
 
-### 2. Install dependencies
+### 3. Install dependencies
 
 ```powershell
 pip install -r requirements.txt
 ```
 
-### 3. Run the API locally
+### 4. Start the API locally
 
 ```powershell
 uvicorn main:app --reload
 ```
 
-Open in browser:
+The API will run at:
 
-- http://localhost:8000
-- http://localhost:8000/about
-- http://localhost:8000/docs
+http://127.0.0.1:8000
 
-## Run Using Docker
+Open API documentation:
 
-### 1. Create environment file
-
-```powershell
-Copy-Item .env.example .env
-```
-
-### 2. Build and start the container
-
-```powershell
-docker compose up --build -d
-```
-
-### 3. Check container status
-
-```powershell
-docker compose ps
-```
-
-### 4. Stop the container
-
-```powershell
-docker compose down
-```
+http://127.0.0.1:8000/docs
 
 ## API Endpoints
 
 | Method | Endpoint | Description |
 |---|---|---|
-| GET | / | Home API |
-| GET | /about | About project |
-| GET | /docs | API documentation |
+| GET | / | Home |
+| GET | /health | Health check |
+| GET | /about | Project information |
+| POST | /users/ | Create user |
+| GET | /users/ | Get all users |
+| GET | /users/{user_id} | Get user by ID |
+| PUT | /users/{user_id} | Update user |
+| DELETE | /users/{user_id} | Delete user |
 
-## Environment Variables
+## Testing
 
-The application uses an `.env` file for local environment configuration.
+All user CRUD endpoints can be tested using Postman.
 
-Do not commit `.env` because it may contain private information.
+Example user JSON:
+
+```json
+{
+  "name": "Riya",
+  "email": "riya@example.com",
+  "phone": "9876543210",
+  "status": "active"
+}
+```
+
+## Git Workflow
+
+Initialize Git:
+
+```powershell
+git init
+```
+
+Create a feature branch:
+
+```powershell
+git switch -c feature/user-crud
+```
+
+Add and commit files:
+
+```powershell
+git add .
+git commit -m "Initial FastAPI project setup"
+```
+
+Connect GitHub repository:
+
+```powershell
+git remote add origin https://github.com/Riyaghadiya/fastapi-practice.git
+```
+
+Push code:
+
+```powershell
+git push -u origin main
+```
+
+## Important Note
+
+The current user data is stored in an in-memory dictionary. Data will be lost when the API restarts.
+
+Never upload the `.env` file or private credentials to GitHub. Use `.env.example` as a template.
 
 ## Project Status
 
 - FastAPI application created.
-- Dependencies installed.
-- Dockerfile configured.
-- Docker Compose configured.
-- Docker container successfully started.
-- API tested through the browser.
+- CRUD operations implemented.
+- API tested using Postman.
+- Git repository initialized.
+- GitHub repository connected.
+- Project uploaded to GitHub.
